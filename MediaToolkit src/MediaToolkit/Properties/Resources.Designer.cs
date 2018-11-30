@@ -88,6 +88,15 @@ namespace MediaToolkit.Properties {
         }
         
         /// <summary>
+        ///   查找类似 MediaToolkit.Resources.FFmpeg64.exe.gz 的本地化字符串。
+        /// </summary>
+        internal static string FFmpeg64ManifestResourceName {
+            get {
+                return ResourceManager.GetString("FFmpeg64ManifestResourceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 MediaToolkit.Resources.FFmpeg.exe.gz 的本地化字符串。
         /// </summary>
         internal static string FFmpegManifestResourceName {

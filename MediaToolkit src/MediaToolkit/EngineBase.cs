@@ -98,8 +98,8 @@
         /// <exception cref="Exception">    Thrown when an exception error condition occurs. </exception>
         private static void UnpackFFmpegExecutable(string path)
         {
-            Stream compressedFFmpegStream = Assembly.GetExecutingAssembly()
-                                                    .GetManifestResourceStream(Resources.FFmpegManifestResourceName);
+            Stream compressedFFmpegStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(
+                    Environment.Is64BitOperatingSystem ? Resources.FFmpeg64ManifestResourceName : Resources.FFmpegManifestResourceName);
 
             if (compressedFFmpegStream == null)
             {
