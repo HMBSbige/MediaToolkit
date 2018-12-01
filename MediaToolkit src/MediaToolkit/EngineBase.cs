@@ -1,5 +1,7 @@
 ﻿namespace MediaToolkit
 {
+    using MediaToolkit.Properties;
+    using MediaToolkit.Util;
     using System;
     using System.Configuration;
     using System.Diagnostics;
@@ -7,9 +9,6 @@
     using System.IO.Compression;
     using System.Reflection;
     using System.Threading;
-
-    using MediaToolkit.Properties;
-    using MediaToolkit.Util;
 
     public class EngineBase : IDisposable
     {
@@ -30,8 +29,8 @@
         protected Process FFmpegProcess;
 
 
-         protected EngineBase()
-            : this(ConfigurationManager.AppSettings["mediaToolkit.ffmpeg.path"])
+        protected EngineBase()
+           : this(ConfigurationManager.AppSettings["mediaToolkit.ffmpeg.path"])
         {
         }
 
@@ -52,27 +51,8 @@
 
             this.FFmpegFilePath = ffMpegPath;
 
-            this.EnsureDirectoryExists ();
+            this.EnsureDirectoryExists();
             this.EnsureFFmpegFileExists();
-            this.EnsureFFmpegIsNotUsed ();
-        }
-
-        private void EnsureFFmpegIsNotUsed()
-        {
-            try
-            {
-                this.Mutex.WaitOne();
-                Process.GetProcessesByName(Resources.FFmpegProcessName)
-                       .ForEach(process =>
-                       {
-                           process.Kill();
-                           process.WaitForExit();
-                       });
-            }
-            finally
-            {
-                this.Mutex.ReleaseMutex();
-            }
         }
 
         private void EnsureDirectoryExists()
@@ -133,10 +113,10 @@
                 return;
             }
 
-            if(FFmpegProcess != null)
-            {
-                this.FFmpegProcess.Dispose();
-            }            
+            FFmpegProcess?.Dispose();
+
+            Mutex?.Close();
+
             this.FFmpegProcess = null;
             this.isDisposed = true;
         }
