@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
-namespace System.Runtime.CompilerServices
-{
-    public class ExtensionAttribute : Attribute
-    {
-    }
-}
-
 namespace MediaToolkit.Util
 {
     public static class Extensions
