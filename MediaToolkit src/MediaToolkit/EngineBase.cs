@@ -113,6 +113,15 @@
                 return;
             }
 
+            try
+            {
+                FFmpegProcess?.Kill();
+            }
+            catch (InvalidOperationException)
+            {
+                // ignored
+            }
+
             FFmpegProcess?.Dispose();
 
             Mutex?.Close();
