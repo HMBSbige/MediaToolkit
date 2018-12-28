@@ -17,7 +17,7 @@
         /// <summary>   Used for locking the FFmpeg process to one thread. </summary>
         private const string LockName = "MediaToolkit.Engine.LockName";
 
-        private const string DefaultFFmpegFilePath = @"./ffmpeg.exe";
+        private static readonly string DefaultFFmpegFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ffmpeg.exe");
 
         /// <summary>   Full pathname of the FFmpeg file. </summary>
         protected readonly string FFmpegFilePath;
